@@ -90,3 +90,49 @@ export const cancelBooking= async(req,res) =>{
                     res.status(500).json(e.message)
                     }
 }
+
+export const toFav = async(req,res)=> {
+    const {email}=req.body;
+    const {rId} = req.params;
+    try{
+        let user =await  prisma.user.findUnique({where:{email}});
+        if (!user)return res.status(404).send("User not found");
+        if (user.favResidenciesID.includes(rId)){
+            const updateUser = await prisma.user.update({
+                where : { email },
+                data : { favResidenciesID: { set :  user.favResidenciesID.filter((id)=>id !== rId)}}
+            })
+            res.json({message: 'Residency Removed from your Favorite List'},updateUser.favResidenciesID)
+
+            
+        }else {
+            const addToFav= await prisma.user.update({
+                where : { email } ,
+                data : { favResidenciesID: {
+                    push: rId
+                }}
+                });
+        }
+        res.send({message: 'updated Favorites'})
+                    
+
+
+    }catch(err){
+        throw new Error(err.message)
+    }
+}
+
+export const getAllFavRes = async(req,res)=>{
+    const {email} = req.body
+    try{
+        const favs = await prisma.user.findUnique({
+            where : {email},
+            select : {
+                favResidenciesID: true
+                }
+                })
+                res.status(200).send(favs)
+                
+}catch(err){
+    throw new Error(err.message)
+}}
