@@ -15,3 +15,78 @@ else{
     })
 }
 }
+
+export const bookVisit = async(req,res)=> {
+    const {email, date}= req.body
+    const {id} = req.params
+    try {
+        const alreadyBooked= await prisma.user.findUnique({
+            where: {email: email},
+            select: {bookedVisits : true}
+        })
+        if(alreadyBooked.bookedVisits.some((visit)=> visit.id=== id)){
+            const bookedDate = alreadyBooked.bookedVisits.find((visit) => visit.id === id).date;
+            return res.status(409).json({ message: `Already Booked By you on ${bookedDate}` });
+        }
+        else {
+            await prisma.user.update({
+                where: {email: email},
+                data: {
+                    bookedVisits:  {push: {id, date}}
+                }
+            },)
+        }
+        res.send(' Your Visit is Booked Successfully !')
+        
+
+    } catch (err){
+        console.error(err);
+        res.status(500).send('Internal Server Error')
+    }
+
+    
+}
+export const getAllBookings = async(req,res) =>{
+    const {email}= req.body
+    try{
+        const bookings= await prisma.user.findUnique({
+            where:{email},
+            select:{bookedVisits : true}
+        })
+        res.status(200).send(bookings)
+    }catch (err){
+        throw new Error(err.message)
+    }
+
+}
+
+export const cancelBooking= async(req,res) =>{
+    const {email} = req.body
+    const {id} = req.params
+    try{
+        const user = await prisma.user.findUnique({
+            where:{email},
+            select:{bookedVisits: true}
+        })
+        if(!user) return res.status(401).json({message:'User Not Found'})
+        const visitIndex = user.bookedVisits.findIndex((visit)=> visit.id===id)
+    if(visitIndex===-1 ) {
+        res.status(403).json
+        ({message:"The Visit You Want To Cancel Is Not In Your List"})
+    } else {
+        user.bookedVisits.splice(visitIndex,1)
+    await prisma.user.update({
+        where:{email:email},
+        data:{
+            bookedVisits: user.bookedVisits
+                }
+                })
+                
+                res.status(201).json({message:'Booking Cancelled Successfully'});
+    }
+    
+                } catch(e){
+                    console.log(e);
+                    res.status(500).json(e.message)
+                    }
+}

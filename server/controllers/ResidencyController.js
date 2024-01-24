@@ -20,12 +20,43 @@ try{
             
             },
             })
-            res.status(201).json({ message :"Residency Created Successfully"})
+            res.status(201).json({
+                message :"Residency Created Successfully",
+                newResidence,
+             })
             }catch(e){
                 console.error(e)
                 console.log(e)
                 res.status(409).json({"Error": e})
                 }
+    }
+
+
+   export const getAllResidencies = async(req,res)=> {
+        try{
+            const allResidences= await  prisma.residency.findMany({
+                orderBy:{
+                    createdAt:"desc"
+                }
+            })
+            // console.log("ALL RESIDENCES FROM DB ",allResidences);
+            res.status(200).json(allResidences)
+            } catch (err) {
+                console.error(err)
+                res.status(500).json({"Error": err})
+                }
+
+            
+    }
+    export const singleResidency = async(req,res)=> {
+        const { id } = req.params;
+        const residence =await  prisma.residency.findUnique({
+            where:{id}
+            });
+            if(!residence) return res.status(404).json({message:'Residency does not exist'})
+            res.status(200).json(residence) 
+        
+        
     }
 
 
