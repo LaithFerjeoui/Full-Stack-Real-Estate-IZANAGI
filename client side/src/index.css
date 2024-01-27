@@ -34,7 +34,7 @@ a {
 .flexCenter {
   display: flex;
   row-gap: 2rem;
-  justify-content: center;
+  justify-content: between;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -42,6 +42,13 @@ a {
   display: flex;
   row-gap: 2rem;
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.flexHero {
+  display: flex;
+  row-gap: 2rem;
+  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -68,6 +75,7 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  
 }
 .flexColEnd {
   display: flex;
@@ -91,7 +99,13 @@ a {
   font-size: 1.5rem;
   font-weight: 600;
 }
-
+.white-gradient{
+  position: absolute;
+  width: 20rem;
+  height: 20rem;
+  background: rgba(225, 255, 255, 0.522);
+  filter: blur(100px);
+}
 /* media queries */
 @media (min-width: 1536px) {
   .innerWidth {
