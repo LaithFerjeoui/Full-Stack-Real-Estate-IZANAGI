@@ -11,13 +11,13 @@ function App() {
       <div>
         <Header />
         <div className="white-gradient " />
-        <Hero />
+         <Hero /> 
       </div>
-      <Companies />
+       <Companies />
       <Carousel />
       <Value/>
       <Contact/>
-      <Footer/>
+      <Footer/> 
     </div>
   );
 }
