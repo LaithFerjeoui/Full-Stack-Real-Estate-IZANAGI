@@ -23,7 +23,7 @@ const Companies = () => {
          key={index}
          initial={{opacity:0 , x: -50}}
          animate={{ opacity:1, x:0 }}
-         transition={{duration:1 ,type:"spring", delay: index*0.4}}
+         transition={{duration:1 ,type:"spring", delay: index*0.5}}
          >
           <img src={company.image} alt="" className='w-36' />
         </motion.div>

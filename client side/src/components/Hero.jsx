@@ -2,18 +2,19 @@ import React from "react";
 import CountUp from "react-countup";
 import { ImLocation2 } from "react-icons/im";
 import { motion } from "framer-motion";
+
 const Hero = () => {
   return (
     <section className="text-white pb-4 bg-[--black] pt-8 sm:pt-0 ">
       <div className="paddings  innerWidth flexHero ">
-        <div className="flexColStart mx-10 sm:mx-0">
+        <div className="flexColStart ">
           <div className="relative z-1 ">
             <div className="h-16 w-16 bg-gradient-to-br from-orange-500 to-orange-300 absolute rounded-full right-[28%] top-[-10%] z-0" />
             <motion.h1 
             initial={{ opacity: 0, y: -9 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 3 , type:"spring"}}
-            className="font-semibold text-5xl sm:text-6xl flexStart mb-11 relative z-1 inline-block text-transparent bg-clip-text bg-gradient-to-r from-gray-200 via-gray-400 to-gray-600">
+            className="font-semibold text-5xl sm:text-6xl flexStart mb-11 relative z-1 text-transparent bg-clip-text bg-gradient-to-r from-gray-200 via-gray-400 to-gray-600">
               Discover <br /> Most Suitable <br /> Property
             </motion.h1>
             <div className="flexColStart text-neutral-500 mb-11">

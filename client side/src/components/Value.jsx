@@ -44,7 +44,7 @@ export const fadeIn = (direction, type, delay, duration) => ({
 const Value = () => {
   return (
     <section className="mt-4 md:ml-9">
-      <div className="paddings innerWidth flex justify-center items-start gap-4 flex-wrap  v-container">
+      <div className="paddings innerWidth flex justify-center items-start gap-4 flex-wrap  ">
         <motion.div
           initial="hidden"
           viewport={{ once: true }}
