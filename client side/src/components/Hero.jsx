@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <section className="text-white pb-4 bg-[--black] pt-8 sm:pt-0 ">
       <div className="paddings  innerWidth flexHero ">
-        <div className="flexColStart ">
+        <div className="flexColStart mx-10 sm:mx-0">
           <div className="relative z-1 ">
             <div className="h-16 w-16 bg-gradient-to-br from-orange-500 to-orange-300 absolute rounded-full right-[28%] top-[-10%] z-0" />
             <motion.h1 
