@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Contact = () => {
+    
+        const [isPolicyAgreed, setIsPolicyAgreed] = useState(false);
+      
+        const togglePolicy = () => {
+          setIsPolicyAgreed(!isPolicyAgreed);
+        };
   return (
     <section className="my-7">
       <div className="paddings innerWidth flex justify-center items-start gap-4 flex-wrap ">
@@ -87,9 +93,9 @@ const Contact = () => {
                         name="country"
                         class="h-full rounded-md border-0 bg-transparent bg-none py-0 pl-4 pr-9 text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm"
                       >
-                        <option>US</option>
-                        <option>CA</option>
-                        <option>EU</option>
+                        <option>+216</option>
+                        <option>Other</option>
+                        
                       </select>
                       <svg
                         class="pointer-events-none absolute right-3 top-0 h-full w-5 text-gray-400"
@@ -131,20 +137,25 @@ const Contact = () => {
                 </div>
                 <div class="flex gap-x-4 sm:col-span-2">
                   <div class="flex h-6 items-center">
-                    <button
-                      type="button"
-                      class="bg-gray-200 flex w-8 flex-none cursor-pointer rounded-full p-px ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                      role="switch"
-                      aria-checked="false"
-                      aria-labelledby="switch-1-label"
-                    >
-                      <span class="sr-only">Agree to policies</span>
+                  <button
+              type="button"
+              class={`bg-gray-200 flex w-8 flex-none cursor-pointer rounded-full p-px ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 ${
+                isPolicyAgreed ? "bg-indigo-600" : ""
+              }`}
+              role="switch"
+              aria-checked={isPolicyAgreed}
+              aria-labelledby="switch-1-label"
+              onClick={togglePolicy}
+            >
+              <span class="sr-only">Agree to policies</span>
 
-                      <span
-                        aria-hidden="true"
-                        class="translate-x-0 h-4 w-4 transform rounded-full bg-white shadow-sm ring-1 ring-gray-900/5 transition duration-200 ease-in-out"
-                      ></span>
-                    </button>
+              <span
+                aria-hidden="true"
+                class={`translate-x-0 h-4 w-4 transform rounded-full bg-white shadow-sm ring-1 ring-gray-900/5 transition duration-200 ease-in-out ${
+                  isPolicyAgreed ? "translate-x-full" : ""
+                }`}
+              ></span>
+            </button>
                   </div>
                   <label
                     class="text-sm leading-6 text-gray-600"
@@ -195,4 +206,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Contact
