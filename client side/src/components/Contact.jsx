@@ -194,11 +194,11 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <div className=" md:flex-1 flex justify-end items-center my-auto relative z-4">
+        <div className=" md:flex-1 flex justify-center sm:justify-end items-center my-auto relative z-4">
           <img
             src="./contact.jpg"
             alt=""
-            className="  w-[480px] h-[560px] overflow-hidden  rounded-t-full border-8 border-solid border-neutral-300 shadow-2xl"
+            className="  w-[95%] h-[400px] sm:w-[480px] sm:h-[560px] overflow-hidden  rounded-t-full border-8 border-solid border-neutral-300 shadow-2xl"
           />
         </div>
       </div>

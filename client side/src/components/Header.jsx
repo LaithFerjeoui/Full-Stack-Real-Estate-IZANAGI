@@ -5,12 +5,12 @@ import "./Menu.css";
 const Header = () => {
   const [menuOpened, setMenuOpened] = useState(false);
   const toggleMenu = () => {
-    setMenuOpened((prev) => !prev);
+    setMenuOpened(true);
   };
 
   const getMenuStyles = (menuOpened) => {
     if (document.documentElement.clientWidth <= 800) {
-      return { right: !menuOpened && "-100%" };
+      return { right: menuOpened ? null : "-100%" };
     }
   };
   return (
@@ -21,7 +21,7 @@ const Header = () => {
         </a>
         <OutsideClickHandler  onOutsideClick={() => setMenuOpened(false)}>
         <div
-          className="flexCenter gap-8 hover:cursor-pointer h-menu "
+          className="flexCenter gap-8 hover:cursor-pointer h-menu"
           style={getMenuStyles(menuOpened)}
         >
           <a href="" className="hover:text-gray-500 sm:hover:text-white">

@@ -8,8 +8,8 @@ const Value = () => {
   return (
     <section className="mt-4 md:ml-9">
       <div className="paddings innerWidth flex justify-center items-start gap-4 flex-wrap  v-container">
-        <div className=" md:flex-1 ">
-          <img src="./value.png" alt="" className=" shadow-2xl w-[480px] h-[560px] overflow-hidden  rounded-t-full border-8 border-solid border-neutral-300" />
+        <div className=" md:flex-1 flex justify-center sm:justify-start">
+          <img src="./value.png" alt="" className="  shadow-2xl w-[95%] h-[400px] sm:w-[480px] sm:h-[560px] overflow-hidden  rounded-t-full border-8 border-solid border-neutral-300" />
         </div>
         <div className="flex flex-col justify-center items-center sm:items-start gap-1 flex-1 mt-9">
           <span className="orangeText"> Our Value</span>

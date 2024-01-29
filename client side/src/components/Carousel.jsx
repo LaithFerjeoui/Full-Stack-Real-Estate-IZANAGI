@@ -8,10 +8,11 @@ const Carousel = () => {
   return (
     <section className="r-wrapper">
       <div className="paddings innerWidth">
-        <div className="mb-4 flexColStart">
+        <div className="mb-4 flex flex-col items-center justify-center flex-wrap sm:items-start">
           <span className="orangeText">Best Choices</span>
           <span className="primaryText">Popular Residencies</span>
         </div>
+        <hr className="w-90 h-[3px] bg-gradient-to-l from-gray-100 via-gray-400 to-neutral-900 mb-3"/>
         <Swiper {...sliderSettings}>
         <SlideNextButton />
           {data.map((card, i) => (

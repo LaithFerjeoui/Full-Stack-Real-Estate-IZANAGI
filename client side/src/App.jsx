@@ -7,7 +7,7 @@ import Hero from "./components/Hero";
 import Value from "./components/Value";
 function App() {
   return (
-    <div className="app">
+    <div className="app relative overflow-clip">
       <div>
         <Header />
         <div className="white-gradient " />
