@@ -4,13 +4,60 @@ import { HiShieldCheck } from "react-icons/hi";
 import { MdCancel, MdAnalytics } from "react-icons/md";
 import { MinusSmallIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
 import data from "../utils/accordion";
+import { motion } from "framer-motion";
+export const slideIn = (direction, type, delay, duration) => ({
+  hidden: {
+    oppacity: 0,
+    x: direction === "left" ? "-100%" : direction === "right" ? "100%" : 0,
+    y: direction === "up" ? "100%" : direction === "down" ? "100%" : 0,
+  },
+  show: {
+    oppacity: 1,
+    x: 0,
+    y: 0,
+    transition: {
+      type,
+      delay,
+      duration,
+      ease: "easeOut",
+    },
+  },
+});
+export const fadeIn = (direction, type, delay, duration) => ({
+  hidden: {
+    x: direction === "left" ? 100 : direction === "right" ? -100 : 0,
+    y: direction === "up" ? 100 : direction === "down" ? -100 : 0,
+    opacity: 0,
+  },
+  show: {
+    x: 0,
+    y: 0,
+    opacity: 1,
+    transition: {
+      type,
+      delay,
+      duration,
+      ease: "easeOut",
+    },
+  },
+});
 const Value = () => {
   return (
     <section className="mt-4 md:ml-9">
       <div className="paddings innerWidth flex justify-center items-start gap-4 flex-wrap  v-container">
-        <div className=" md:flex-1 flex justify-center sm:justify-start">
-          <img src="./value.png" alt="" className="  shadow-2xl w-[95%] h-[400px] sm:w-[480px] sm:h-[560px] overflow-hidden  rounded-t-full border-8 border-solid border-neutral-300" />
-        </div>
+        <motion.div
+          initial="hidden"
+          viewport={{ once: true }}
+          whileInView="show"
+          variants={fadeIn("right", "tween", 0.2, 1)}
+          className=" md:flex-1 flex justify-center sm:justify-start"
+        >
+          <img
+            src="./value.png"
+            alt=""
+            className="  shadow-2xl w-[95%] h-[400px] sm:w-[480px] sm:h-[560px] overflow-hidden  rounded-t-full border-8 border-solid border-neutral-300"
+          />
+        </motion.div>
         <div className="flex flex-col justify-center items-center sm:items-start gap-1 flex-1 mt-9">
           <span className="orangeText"> Our Value</span>
           <span className="primaryText"> Value We Give to You</span>

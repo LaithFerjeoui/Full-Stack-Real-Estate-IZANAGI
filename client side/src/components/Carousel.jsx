@@ -12,9 +12,9 @@ const Carousel = () => {
           <span className="orangeText">Best Choices</span>
           <span className="primaryText">Popular Residencies</span>
         </div>
-        <hr className="w-90 h-[3px] bg-gradient-to-l from-gray-100 via-gray-400 to-neutral-900 mb-3"/>
+        <hr className="w-90 h-[3px] bg-gradient-to-l from-gray-100 via-gray-400 to-neutral-900 mb-3" />
         <Swiper {...sliderSettings}>
-        <SlideNextButton />
+          <SlideNextButton />
           {data.map((card, i) => (
             <SwiperSlide key={i}>
               <div className="flexColStart r-card gap-2.5 p-2 shadow-xl  rounded-[10px] max-w-max m-auto transition duration-200 ease-in hover:cursor-pointer hover:scale-[1.025] ">
