@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useState ,Fragment } from "react";
 import { motion } from "framer-motion";
+import { Dialog, Transition } from '@headlessui/react'
+import { CheckIcon } from '@heroicons/react/24/outline'
+import PrivacyPolicyDialog from "./PrivacyPolicy";
 export const fadeIn = (direction, type, delay, duration) => ({
   hidden: {
     x: direction === "left" ? 100 : direction === "right" ? -100 : 0,
@@ -19,6 +22,11 @@ export const fadeIn = (direction, type, delay, duration) => ({
   },
 });
 const Contact = () => {
+  const [openPrivacyPolicyDialog, setOpenPrivacyPolicyDialog] = useState(false);
+
+  const handlePrivacyPolicyClick = () => {
+    setOpenPrivacyPolicyDialog(true);
+  };
   const [isPolicyAgreed, setIsPolicyAgreed] = useState(false);
 
   const togglePolicy = () => {
@@ -179,8 +187,8 @@ const Contact = () => {
                   >
                     By selecting this, you agree to our{" "}
                     <span>
-                      <a href="#" class="font-semibold text-indigo-600">
-                        privacy&nbsp;policy
+                      <a  class="font-semibold text-indigo-600 hover:cursor-pointer"  onClick={handlePrivacyPolicyClick}>
+                        Privacy&nbsp;Policy
                       </a>
                     </span>
                     .
@@ -224,6 +232,10 @@ const Contact = () => {
           />
         </motion.div>
       </div>
+      <PrivacyPolicyDialog
+        open={openPrivacyPolicyDialog}
+        onClose={() => setOpenPrivacyPolicyDialog(false)}
+      />
     </section>
   );
 };

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BiMenuAltRight } from "react-icons/bi";
 import OutsideClickHandler from "react-outside-click-handler";
 import "./Menu.css";
+import { Link, NavLink } from "react-router-dom";
 const Header = () => {
   const [menuOpened, setMenuOpened] = useState(false);
   const toggleMenu = () => {
@@ -14,28 +15,19 @@ const Header = () => {
     }
   };
   return (
-    <section className="text-white ">
+    <section className="text-white bg-[--black]">
       <div className="flexNav paddings innerWidth py-4 text-[--secondary]">
-        <a href="#">
-          <img src="./logo.png" width={100} alt="" />
-        </a>
+        <Link to="/">
+          <img src="./logo.png" width={100} Linklt="" />
+        </Link>
         <OutsideClickHandler  onOutsideClick={() => setMenuOpened(false)}>
         <div
           className="flexCenter gap-8 hover:cursor-pointer h-menu"
           style={getMenuStyles(menuOpened)}
         >
-          <a href="" className="hover:text-gray-500 sm:hover:text-white">
-            Residencies
-          </a>
-          <a href="" className="hover:text-gray-500 sm:hover:text-white">
-            Our Value
-          </a>
-          <a href="" className="hover:text-gray-500 sm:hover:text-white">
-            Contact us
-          </a>
-          <a href="" className="hover:text-gray-500 sm:hover:text-white">
-            Get Started
-          </a>
+      <NavLink to="/properties">Properties</NavLink>
+      <NavLink to="/contact">Contact</NavLink>
+         
           <button
             type="button"
             className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"

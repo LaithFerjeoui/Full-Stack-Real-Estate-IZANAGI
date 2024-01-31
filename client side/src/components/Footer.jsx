@@ -66,6 +66,7 @@ const navigation = [
 const Footer = () => {
   return (
     <footer className="bg-white">
+      <hr className="w-90 h-[3px] bg-gradient-to-l from-gray-100 via-neutral-900 to-gray-100 mb-3" />
       <div className=" mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
         <div >
           <a href="#" className='flex justify-center py-4'>
@@ -91,6 +92,7 @@ const Footer = () => {
           </p>
         </div>
       </div>
+      
     </footer>
   );
 };
