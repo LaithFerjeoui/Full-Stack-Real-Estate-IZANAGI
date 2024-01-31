@@ -65,13 +65,19 @@ const Hero = () => {
             </div>
           </div>
         </div>
-        <motion.div
-        initial={{x:"7rem" ,opacity: 0 }}
-        animate={{x:0,opacity:1}}
-        transition={{duration:2, type:"spring"}}
-         className="flexCenter w-[95%] h-[400px] sm:w-[480px] sm:h-[560px] overflow-hidden  rounded-t-full border-8 border-solid border-neutral-800 ">
-          <img src="./hero-image.png" alt="" className="w-[100%] h-[100%] " />
-        </motion.div>
+        <div className="flexCenter hero-right">
+          <motion.div
+            initial={{ x: "7rem", opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{
+              duration: 2,
+              type: "ease-in",
+            }}
+            className="image-container"
+          >
+            <img src="./hero-image.png" alt="houses" />
+          </motion.div>
+        </div>
       </div>
     </section>
   );
