@@ -1,6 +1,5 @@
 import React from "react";
 import CountUp from "react-countup";
-import { ImLocation2 } from "react-icons/im";
 import { HiLocationMarker } from "react-icons/hi";
 import "./Hero.css";
 import { motion } from "framer-motion";
@@ -29,8 +28,13 @@ const Hero = () => {
             </div>
             <div className="flexCenter search-bar">
             <HiLocationMarker color="var(--blue)" size={25} />
-            <input type="text" />
-            <button className="button">Search</button>
+            <input type="text" className="text-black"/>
+            <button
+                type="button"
+                className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text- shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+              >
+                Search
+              </button>
           </div>
           </div>
           <div className="w-[100%] flex justify-center items-center gap-3 flex-wrap">
