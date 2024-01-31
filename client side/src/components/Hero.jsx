@@ -26,9 +26,9 @@ const Hero = () => {
                 Forget all difficulties in finding a residence for you.
               </span>
             </div>
-            <div className="flexCenter search-bar">
+            <div className="flex justify-center items-center gap-8 bg-white rounded-md width-[100%] border-solid border-neutral-700 border-[3px] py-1 px-2">
             <HiLocationMarker color="var(--blue)" size={25} />
-            <input type="text" className="text-black"/>
+            <input type="text" className="text-black border-none outline-none"/>
             <button
                 type="button"
                 className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text- shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
