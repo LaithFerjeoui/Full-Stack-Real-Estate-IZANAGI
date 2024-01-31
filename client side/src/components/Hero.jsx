@@ -1,13 +1,13 @@
-import React from "react";
-import CountUp from "react-countup";
-import { ImLocation2 } from "react-icons/im";
-import { motion } from "framer-motion";
 import "./Hero.css";
+import { HiLocationMarker } from "react-icons/hi";
+import CountUp from "react-countup";
+import { motion } from "framer-motion";
 const Hero = () => {
   return (
     <section className="hero-wrapper">
       <div className="paddings innerWidth flexCenter hero-container">
-      <div className="flexColStart hero-left">
+        {/* left side */}
+        <div className="flexColStart hero-left">
           <div className="hero-title">
             <div className="orange-circle" />
             <motion.h1
@@ -28,19 +28,11 @@ const Hero = () => {
             <span>Forget all difficulties in finding a residence for you</span>
           </div>
 
-          <div className="bg-white w-[100%] rounded-md border-solid border-[3px] border-gray-400  px-2 py-1 flex justify-between items-center mb-11 ">
-              <ImLocation2 size={23} color="var(--blue)" />
-              <input
-                type="text"
-                className="border-none outline-none text-black"
-              />
-              <button
-                type="button"
-                className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-              >
-                Search
-              </button>
-            </div>
+          <div className="flexCenter search-bar">
+            <HiLocationMarker color="var(--blue)" size={25} />
+            <input type="text" />
+            <button className="button">Search</button>
+          </div>
 
           <div className="flexCenter stats">
             <div className="flexColCenter stat">
@@ -65,6 +57,8 @@ const Hero = () => {
             </div>
           </div>
         </div>
+
+        {/* right side */}
         <div className="flexCenter hero-right">
           <motion.div
             initial={{ x: "7rem", opacity: 0 }}
