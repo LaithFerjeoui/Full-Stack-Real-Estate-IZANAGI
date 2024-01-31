@@ -4,6 +4,7 @@ import "swiper/css";
 import data from "../utils/slider.json";
 import { sliderSettings } from "../utils/common.js";
 import "./SwiperButtons.css";
+import PropertyCard from "./PropertyCard.jsx";
 const Carousel = () => {
   return (
     <section className="r-wrapper">
@@ -17,17 +18,7 @@ const Carousel = () => {
           <SlideNextButton />
           {data.map((card, i) => (
             <SwiperSlide key={i}>
-              <div className="flexColStart r-card gap-2.5 p-2 shadow-xl  rounded-[10px] max-w-max m-auto transition duration-200 ease-in hover:cursor-pointer hover:scale-[1.025] ">
-                <img src={card.image} alt="" className="w-[100%] max-w-60" />
-                <span className="secondaryText text-sm font-semibold">
-                  <span className="text-orange-400">$</span>
-                  {card.price}
-                </span>
-                <span className="titleCard text-base ">{card.name}</span>
-                <span className="secondaryText text-xs w-60">
-                  {card.detail}
-                </span>
-              </div>
+              <PropertyCard card={card}/>
             </SwiperSlide>
           ))}
         </Swiper>

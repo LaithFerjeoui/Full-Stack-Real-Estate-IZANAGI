@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { CheckIcon } from "@heroicons/react/24/outline";
 import { MdOutlinePrivacyTip } from "react-icons/md";
 const PrivacyPolicyDialog = ({ open, onClose }) => {
   return (
@@ -43,7 +42,14 @@ const PrivacyPolicyDialog = ({ open, onClose }) => {
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                      Izanagi Real Estate ("us", "we", or "our") operates the Izanagi website at <span className="font-medium italic">izanagi-real-estate.vercel.app</span> (the "Site"). This privacy policy outlines how we collect, use, and protect personal information obtained from users of the Site.
+                        Izanagi Real Estate ("us", "we", or "our") operates the
+                        Izanagi website at{" "}
+                        <span className="font-medium italic">
+                          izanagi-real-estate.vercel.app
+                        </span>{" "}
+                        (the "Site"). This privacy policy outlines how we
+                        collect, use, and protect personal information obtained
+                        from users of the Site.
                         <br /> <br />
                         <span className="font-bold">
                           Information Collection
