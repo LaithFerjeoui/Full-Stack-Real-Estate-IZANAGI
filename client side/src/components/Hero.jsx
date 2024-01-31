@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import "./Hero.css";
 const Hero = () => {
   return (
-    <section className="text-white pb-4 pt-8 sm:pt-0 ">
-      <div className="paddings innerWidth flexHero ">
+    <section className="hero-wrapper">
+      <div className="paddings innerWidth flexCenter hero-container">
       <div className="flexColStart hero-left">
           <div className="hero-title">
             <div className="orange-circle" />
