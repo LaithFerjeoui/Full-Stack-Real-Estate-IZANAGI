@@ -1,11 +1,34 @@
 import React from "react";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import "swiper/css";
-import data from "../utils/slider.json";
+
 import { sliderSettings } from "../utils/common.js";
 import "./SwiperButtons.css";
 import PropertyCard from "./PropertyCard.jsx";
+import useProperties from "./Hooks/useProperties.jsx";
+import { PuffLoader } from "react-spinners";
 const Carousel = () => {
+  const { data, isError, isLoading } = useProperties();
+  if (isError) {
+    return (
+      <div>
+        <span>Oops... something went wrong!</span>
+      </div>
+    );
+  }
+  if (isLoading) {
+    return (
+      <div className="flexCenter" style={{ height: "60vh" }}>
+        <PuffLoader
+          height="80"
+          width="80"
+          radius={1}
+          aria-label="puff-loading"
+          color={"#4066ff"}
+        />
+      </div>
+    );
+  }
   return (
     <section className="r-wrapper">
       <div className="paddings innerWidth">
@@ -16,7 +39,7 @@ const Carousel = () => {
         <hr className="w-90 h-[3px] bg-gradient-to-l from-gray-100 via-gray-400 to-neutral-900 mb-3" />
         <Swiper {...sliderSettings}>
           <SlideNextButton />
-          {data.map((card, i) => (
+          {data.slice(0,8).map((card, i) => (
             <SwiperSlide key={i}>
               <PropertyCard card={card}/>
             </SwiperSlide>
