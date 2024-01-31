@@ -14,7 +14,7 @@ const Header = () => {
     }
   };
   return (
-    <section className="bg-[--black] text-white ">
+    <section className="text-white ">
       <div className="flexNav paddings innerWidth py-4 text-[--secondary]">
         <a href="#">
           <img src="./logo.png" width={100} alt="" />

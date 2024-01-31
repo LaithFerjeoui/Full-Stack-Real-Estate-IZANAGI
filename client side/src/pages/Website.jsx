@@ -9,7 +9,7 @@ import Value from "../components/Value";
 const Website = () => {
   return (
     <div className="app relative overflow-clip">
-    <div>
+    <div className='bg-[--black]'>
       <Header />
       <div className="white-gradient " />
       <Hero />
