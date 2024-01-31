@@ -26,7 +26,7 @@ const Hero = () => {
                 Forget all difficulties in finding a residence for you.
               </span>
             </div>
-            <div className="flex justify-center items-center gap-8 bg-white rounded-md sm:width-[100%] width-[60%] border-solid border-neutral-700 border-[3px] py-1 px-2 flex-wrap">
+            <div className="flex justify-center items-center gap-8 bg-white rounded-md  border-solid border-neutral-700 border-[3px] py-1 px-2 flex-nowrap w-[95%]  sm:w-[480px] overflow-hidden">
             <HiLocationMarker color="var(--blue)" size={25} />
             <input type="text" className="text-black border-none outline-none"/>
             <button
