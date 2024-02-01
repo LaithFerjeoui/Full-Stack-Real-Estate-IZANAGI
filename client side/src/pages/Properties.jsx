@@ -9,7 +9,7 @@ const Properties = () => {
   if (isError) {
     return (
       <div>
-        <span>Oops... something went wrong!</span>
+        <span className="flex justify-center">Oops... something went wrong!</span>
       </div>
     );
   }

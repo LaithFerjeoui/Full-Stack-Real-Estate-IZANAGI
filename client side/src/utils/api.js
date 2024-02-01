@@ -15,7 +15,7 @@ export const getAllProperties= async()=> {
         }
         return response.data
     }catch(error){
-        toast.error("Something went  wrong")
+        toast.error("Something went wrong")
         throw error
     }
 
