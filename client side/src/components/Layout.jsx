@@ -6,8 +6,8 @@ import { Outlet } from "react-router-dom";
 const Layout = () => {
   return (
     <>
-      <div>
-        <div className="relative overflow-clip">
+      <div className="relative overflow-x-clip " >
+        <div className="relative overflow-x-clip ">
           <Header />
         </div>
 

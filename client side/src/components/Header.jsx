@@ -11,7 +11,8 @@ const Header = () => {
 
   const getMenuStyles = (menuOpened) => {
     if (document.documentElement.clientWidth <= 800) {
-      return { right: menuOpened ? null : "-100%" };
+      return { right: menuOpened ? null : "-100%",
+      zIndex: menuOpened ? 1000 : 0, };
     }
   };
   return (

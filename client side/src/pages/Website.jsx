@@ -6,7 +6,7 @@ import Hero from "../components/Hero";
 import Value from "../components/Value";
 const Website = () => {
   return (
-    <div className="app relative overflow-clip">
+    <div className="app relative z-0 overflow-clip">
       <div className="bg-[--black]">
         <div className="white-gradient " />
         <Hero />

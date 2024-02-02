@@ -6,7 +6,7 @@ import SearchBar from "./SearchBar";
 const Hero = () => {
   
   return (
-    <section className="text-white pb-4 pt-8 sm:pt-0 ">
+    <section className="text-white pb-4 pt-8 sm:pt-0 relative z-0 ">
       <div className="paddings innerWidth flexHero ">
         <div className="flexColStart gap-12">
           <div className="relative z-1 ">
