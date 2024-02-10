@@ -1,18 +1,45 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { getProperty } from "../utils/api";
-import { useQuery } from "react-query";
+import { getProperty, cancelBooking } from "../utils/api";
+import { useMutation, useQuery } from "react-query";
 import { PuffLoader } from "react-spinners";
 import { AiFillHeart, AiTwotoneCar } from "react-icons/ai";
 import { FaShower } from "react-icons/fa";
 import { MdMeetingRoom, MdLocationPin } from "react-icons/md";
 import Map from "../components/Map";
+import useAuthCheck from "../components/Hooks/useAuthCheck";
+import { useAuth0 } from "@auth0/auth0-react";
+import BookingModal from "../components/BookingModal";
+import UserDetailContext from "../components/context/UserDetailContext";
+import { toast } from "react-toastify";
+import Heart from "../components/Heart";
 const Property = () => {
   const { pathname } = useLocation();
   const id = pathname.split("/").slice(-1)[0];
   const { data, isLoading, isError } = useQuery(["resd", id], () =>
     getProperty(id)
   );
+
+  const [modalOpened, setModalOpened] = useState(false);
+  const { validateLogin } = useAuthCheck();
+  const { user } = useAuth0();
+
+  const {
+    userDetails: { token, bookings },
+    setUserDetails,
+  } = useContext(UserDetailContext);
+  const { mutate: cancelBookingFN, isLoading: cancelling } = useMutation({
+    mutationFn: () => cancelBooking(id, user?.email, token),
+    onSuccess: () => {
+      setUserDetails((prev) => ({
+        ...prev,
+        bookings: prev.bookings.filter((booking) => booking?.id !== id),
+      }));
+
+      toast.success("Booking cancelled", { position: "bottom-right" });
+    },
+  });
+  
   if (isLoading) {
     return (
       <div>
@@ -29,14 +56,10 @@ const Property = () => {
       </div>
     </div>;
   }
-  console.log(data);
+
   return (
     <div className="flexColCenter paddings innerWidth gap-8 relative ">
-      <AiFillHeart
-        size={24}
-        className="absolute top-[55px] right-[60px] z-1 cursor-pointer"
-        color="white"
-      />
+      <Heart id={id}/>
 
       <img
         src={data?.image}
@@ -79,12 +102,37 @@ const Property = () => {
               {data?.country},<span> </span>
             </span>
           </div>
-          <button
-            type="button"
-            className="mt-4 w-full rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 "
-          >
-            Book Visit
-          </button>
+          {bookings?.map((booking) => booking.id).includes(id) ? (
+            <>
+              <button
+                class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-1 px-4 border border-red-500 hover:border-transparent rounded w-full"
+                onClick={() => cancelBookingFN()}
+                disabled={cancelling}
+              >
+                Cancel booking
+              </button>
+              <span>
+                Your Visit is already booked for this date: <span></span>
+                {bookings?.filter((booking) => booking?.id === id)[0].date}
+              </span>
+            </>
+          ) : (
+            <button
+              type="button"
+              className="mt-4 w-full rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 "
+              onClick={() => {
+                validateLogin() && setModalOpened(true);
+              }}
+            >
+              Book Visit
+            </button>
+          )}
+          <BookingModal
+            opened={modalOpened}
+            setOpened={setModalOpened}
+            propertyId={id}
+            email={user?.email}
+          />
         </div>
         {/* right side */}
         <div className="flex-1 gap-6">

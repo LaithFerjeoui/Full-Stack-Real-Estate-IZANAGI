@@ -6,7 +6,7 @@ export const createUser = async (req,res)=> {
 console.log("creating a user");
 let {email} =req.body
 const existingUser= await prisma.user.findUnique({where:{email}})
-if(existingUser) return res.status(409).send({message:'Email already exists.'} )
+if(existingUser) return res.status(201).send({ message: "User already registered" } )
 else{
     const user=await prisma.user.create({data: req.body})
     res.send({
@@ -92,35 +92,43 @@ export const cancelBooking= async(req,res) =>{
 }
 
 export const toFav = async(req,res)=> {
-    const {email}=req.body;
-    const {rId} = req.params;
-    try{
-        let user =await  prisma.user.findUnique({where:{email}});
-        if (!user)return res.status(404).send("User not found");
-        if (user.favResidenciesID.includes(rId)){
-            const updateUser = await prisma.user.update({
-                where : { email },
-                data : { favResidenciesID: { set :  user.favResidenciesID.filter((id)=>id !== rId)}}
-            })
-            res.json({message: 'Residency Removed from your Favorite List'},updateUser.favResidenciesID)
+    const { email } = req.body;
+  const { rId } = req.params;
 
-            
-        }else {
-            const addToFav= await prisma.user.update({
-                where : { email } ,
-                data : { favResidenciesID: {
-                    push: rId
-                }}
-                });
-        }
-        res.send({message: 'updated Favorites'})
-                    
+  try {
+    const user = await prisma.user.findUnique({
+      where: { email },
+    });
 
+    if (user.favResidenciesID.includes(rId)) {
+      const updateUser = await prisma.user.update({
+        where: { email },
+        data: {
+          favResidenciesID: {
+            set: user.favResidenciesID.filter((id) => id !== rId),
+          },
+        },
+      });
 
-    }catch(err){
-        throw new Error(err.message)
+      res.send({ message: "Removed from favorites", user: updateUser });
+    } else {
+      const updateUser = await prisma.user.update({
+        where: { email },
+        data: {
+          favResidenciesID: {
+            push: rId,
+          },
+        },
+      });
+      res.send({ message: "Updated favorites", user: updateUser });
     }
+} catch (err){
+    console.error(err);
+    res.status(500).send('Internal Server Error')
 }
+
+};
+
 
 export const getAllFavRes = async(req,res)=>{
     const {email} = req.body
