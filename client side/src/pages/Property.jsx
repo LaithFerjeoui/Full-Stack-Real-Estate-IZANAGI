@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { getProperty, cancelBooking } from "../utils/api";
 import { useMutation, useQuery } from "react-query";
 import { PuffLoader } from "react-spinners";
-import { AiFillHeart, AiTwotoneCar } from "react-icons/ai";
+import { AiTwotoneCar } from "react-icons/ai";
 import { FaShower } from "react-icons/fa";
 import { MdMeetingRoom, MdLocationPin } from "react-icons/md";
 import Map from "../components/Map";

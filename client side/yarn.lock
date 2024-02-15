@@ -2412,6 +2412,11 @@ which@^2.0.1:
   dependencies:
     isexe "^2.0.0"
 
+world-countries@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.npmjs.org/world-countries/-/world-countries-5.0.0.tgz"
+  integrity sha512-wAfOT9Y5i/xnxNOdKJKXdOCw9Q3yQLahBUeuRol+s+o20F6h2a4tLEbJ1lBCYwEQ30Sf9Meqeipk1gib3YwF5w==
+
 "wrap-ansi-cjs@npm:wrap-ansi@^7.0.0":
   version "7.0.0"
   resolved "https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-7.0.0.tgz"

@@ -118,7 +118,7 @@ export const getAllFav = async (email, token) => {
   try {
 
     const res = await api.post(
-      `/user/allFav`,
+      `/user/allFavoriteResidencies`,
       {
         email,
       },
@@ -132,7 +132,7 @@ export const getAllFav = async (email, token) => {
     return res.data["favResidenciesID"]
 
   } catch (e) {
-    toast.error("Something went wrong while fetching favs");
+    toast.error("Something went wrong while fetching Favorites");
     throw e
   }
 }

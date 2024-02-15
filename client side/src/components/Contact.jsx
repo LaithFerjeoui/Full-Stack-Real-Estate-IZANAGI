@@ -1,7 +1,5 @@
 import React, { useState ,Fragment } from "react";
 import { motion } from "framer-motion";
-import { Dialog, Transition } from '@headlessui/react'
-import { CheckIcon } from '@heroicons/react/24/outline'
 import PrivacyPolicyDialog from "./PrivacyPolicy";
 export const fadeIn = (direction, type, delay, duration) => ({
   hidden: {

@@ -5,8 +5,20 @@ import "./Menu.css";
 import { Link, NavLink } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import ProfileMenu from "./ProfileMenu";
+import useAuthCheck from "../components/Hooks/useAuthCheck";
+import AddPropertyModal from "./AddPropertyModal"
+
 const Header = () => {
   const [menuOpened, setMenuOpened] = useState(false);
+  const [modalOpened, setModalOpened] = useState(false);
+  const { validateLogin } = useAuthCheck();
+  const handleAddPropertyClick = () => {
+    if (validateLogin()) {
+   
+      setModalOpened(true);
+      console.log(modalOpened)
+    }
+  };
   const toggleMenu = () => {
     setMenuOpened(true);
   };
@@ -15,7 +27,7 @@ const Header = () => {
     if (document.documentElement.clientWidth <= 800) {
       return {
         right: menuOpened ? null : "-100%",
-        zIndex: menuOpened ? 1000 : 0,
+        zIndex: menuOpened ? 2 : 0,
       };
     }
   };
@@ -27,12 +39,14 @@ const Header = () => {
         </Link>
         <OutsideClickHandler onOutsideClick={() => setMenuOpened(false)}>
           <div
-            className="flexCenter gap-8 hover:cursor-pointer h-menu"
+            className="flexCenter gap-8 hover:cursor-pointer  h-menu"
             style={getMenuStyles(menuOpened)}
           >
-            <NavLink to="/properties">Properties</NavLink>
-            <NavLink to="/contact">Contact</NavLink>
-
+            <NavLink to="/properties" className="hover:text-gray-200">Properties</NavLink>
+            <NavLink to="mailto:laith.ferjeoui@gmail.com" className="hover:text-gray-200">Contact</NavLink>
+            <div className="hover:text-gray-200" onClick={handleAddPropertyClick}>Add Property</div>
+            <AddPropertyModal opened={modalOpened}
+            setOpened={setModalOpened}/>
             {!isAuthenticated ? (
               <button
                 type="button"
@@ -43,7 +57,6 @@ const Header = () => {
               </button>
             ) : (
               <ProfileMenu user={user} logout={logout} />
-              
             )}
           </div>
         </OutsideClickHandler>

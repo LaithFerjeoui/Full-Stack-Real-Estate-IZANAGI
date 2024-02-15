@@ -15,7 +15,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: -9 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 2, type: "easeIn" }}
-              className="font-semibold text-5xl sm:text-6xl  mb-11  text-transparent bg-clip-text bg-gradient-to-r from-gray-200 via-gray-400 to-gray-600"
+              className="font-semibold text-5xl sm:text-6xl  mb-11  text-transparent bg-clip-text bg-gradient-to-r from-gray-200 via-gray-400 to-gray-600 relative"
             >
               Discover <br /> Most Suitable <br /> Property
             </motion.h1>

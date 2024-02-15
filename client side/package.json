@@ -36,7 +36,8 @@
     "react-router-dom": "^6.10.0",
     "react-spinners": "^0.13.8",
     "react-toastify": "^10.0.4",
-    "swiper": "^9.1.1"
+    "swiper": "^9.1.1",
+    "world-countries": "^5.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

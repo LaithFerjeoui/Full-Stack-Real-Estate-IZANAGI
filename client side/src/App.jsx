@@ -10,6 +10,7 @@ import Property from "./pages/Property";
 import UserDetailContext from "./components/context/UserDetailContext";
 import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
+import Favorites from "./pages/Favorites";
 function App() {
   const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ function App() {
                 <Route index element={<Properties />} />
                 <Route path=":propertyid" element={<Property />} />
               </Route>
+          <Route path="/favorites" element={<Favorites/>}/>
             </Route>
           </Routes>
         </Suspense>
