@@ -4,6 +4,7 @@ import { IoMdSettings, IoIosLogOut } from "react-icons/io";
 import { FaHeart, FaShieldAlt } from "react-icons/fa";
 import { IoListCircleOutline } from "react-icons/io5";
 import PrivacyPolicyDialog from "./PrivacyPolicy";
+import { toast } from "react-toastify";
 
 const ProfileMenu = ({ user, logout }) => {
   const [openPrivacyPolicyDialog, setOpenPrivacyPolicyDialog] = useState(false);
@@ -18,13 +19,15 @@ const ProfileMenu = ({ user, logout }) => {
     // You can handle different actions here
     switch (action) {
       case "account-settings":
-        navigate("./settings", { replace: true });
+        toast.info('You cannot use this Feature right now.', {
+          position: "bottom-right",
+        });
         break;
       case "favorites":
         navigate("./favorites", { replace: true });
         break;
       case "bookings":
-        navigate("./bookings", { replace: true });
+        navigate("./myBookings", { replace: true });
         break;
       case "privacy":
         setOpenPrivacyPolicyDialog(true);

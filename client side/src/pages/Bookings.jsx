@@ -1,16 +1,22 @@
-import React, { useState } from "react";
-import SearchBar from "../components/SearchBar";
+import React, { useContext, useState } from "react";
 import { HiLocationMarker } from "react-icons/hi";
 import useProperties from "../components/Hooks/useProperties";
 import { PuffLoader } from "react-spinners";
 import PropertyCard from "../components/PropertyCard";
-const Properties = () => {
-  const  [filter, setFilter] = useState("");
+import UserDetailContext from "../components/context/UserDetailContext";
+import { motion } from "framer-motion";
+const Bookings = () => {
+  const [filter, setFilter] = useState("");
+  const {
+    userDetails: { bookings },
+  } = useContext(UserDetailContext);
   const { data, isError, isLoading } = useProperties();
   if (isError) {
     return (
       <div>
-        <span className="flex justify-center">Oops... something went wrong!</span>
+        <span className="flex justify-center">
+          Oops... something went wrong!
+        </span>
       </div>
     );
   }
@@ -29,8 +35,11 @@ const Properties = () => {
   }
   return (
     <div>
-      
       <div className="flexColCenter paddings innerWidth gap-8 ">
+      <motion.h1 className="mt-5 shadow-xl leading-7 font-extrabold text-transparent text-2xl bg-clip-text bg-gradient-to-r from-purple-600 to-blue-800"
+      initial={{ opacity: 0, y: -9 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 2, type: "easeIn" }}>My Bookings</motion.h1>
         <div className="w-[100%] min-w-40 max-w-[448px] rounded-xl">
           <form>
             <div class="relative">
@@ -47,7 +56,6 @@ const Properties = () => {
                 required
                 onChange={(e) => setFilter(e.target.value)}
                 value={filter}
-
               />
               <button
                 type="button"
@@ -60,13 +68,24 @@ const Properties = () => {
         </div>
 
         <div className="paddings flex justify-center items-center flex-wrap">
-         { data.filter((property)=>property.title.toLowerCase().includes(filter.toLowerCase())||property.city.toLowerCase().includes(filter.toLowerCase())||property.country.toLowerCase().includes(filter.toLowerCase())).map((card, i) => (
-            <PropertyCard card={card} key={i}/>))
-         }
+          {data
+            .filter((property) =>
+            bookings && Array.isArray(bookings) && bookings.map((booking) => booking.id).includes(property.id)
+            
+            )
+            .filter(
+              (property) =>
+                property.title.toLowerCase().includes(filter.toLowerCase()) ||
+                property.city.toLowerCase().includes(filter.toLowerCase()) ||
+                property.country.toLowerCase().includes(filter.toLowerCase())
+            )
+            .map((card, i) => (
+              <PropertyCard card={card} key={i} />
+            ))}
         </div>
       </div>
     </div>
   );
 };
 
-export default Properties;
+export default Bookings;

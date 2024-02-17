@@ -1,12 +1,46 @@
-import React from 'react'
-import useFavorites from '../components/Hooks/useFavorites'
-import PropertyCard from '../components/PropertyCard'
-import { HiLocationMarker } from 'react-icons/hi'
-
+import React, { useContext, useState } from "react";
+import { HiLocationMarker } from "react-icons/hi";
+import useProperties from "../components/Hooks/useProperties";
+import { PuffLoader } from "react-spinners";
+import PropertyCard from "../components/PropertyCard";
+import UserDetailContext from "../components/context/UserDetailContext";
+import { motion } from "framer-motion";
 const Favorites = () => {
-    const {data} = useFavorites
+  const [filter, setFilter] = useState("");
+  const {
+    userDetails: { favorites },
+  } = useContext(UserDetailContext);
+  const { data, isError, isLoading } = useProperties();
+  if (isError) {
+    return (
+      <div>
+        <span className="flex justify-center">
+          Oops... something went wrong!
+        </span>
+      </div>
+    );
+  }
+  if (isLoading) {
+    return (
+      <div className="flexCenter" style={{ height: "60vh" }}>
+        <PuffLoader
+          height="80"
+          width="80"
+          radius={1}
+          aria-label="puff-loading"
+          color={"#4066ff"}
+        />
+      </div>
+    );
+  }
   return (
-<div className="flexColCenter paddings innerWidth gap-8 ">
+    <div>
+      <div className="flexColCenter paddings innerWidth gap-8 ">
+      <motion.h1 className="mt-5 shadow-xl leading-7 font-extrabold text-transparent text-2xl bg-clip-text bg-gradient-to-r from-purple-600 to-blue-800"
+      initial={{ opacity: 0, y: -9 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 2, type: "easeIn" }}>My Favourites</motion.h1>
+      
         <div className="w-[100%] min-w-40 max-w-[448px] rounded-xl">
           <form>
             <div class="relative">
@@ -19,8 +53,10 @@ const Favorites = () => {
                 type="search"
                 id="default-search"
                 class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-3xl bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-300 dark:border-gray-400 dark:placeholder-gray-500 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Search by Location"
+                placeholder="Search by Name/City/Country"
                 required
+                onChange={(e) => setFilter(e.target.value)}
+                value={filter}
               />
               <button
                 type="button"
@@ -30,14 +66,29 @@ const Favorites = () => {
               </button>
             </div>
           </form>
+          
         </div>
 
         <div className="paddings flex justify-center items-center flex-wrap">
           
+          {data
+            .filter((property) =>
+            favorites && Array.isArray(favorites) && favorites.includes(property.id)
+            
+            )
+            .filter(
+              (property) =>
+                property.title.toLowerCase().includes(filter.toLowerCase()) ||
+                property.city.toLowerCase().includes(filter.toLowerCase()) ||
+                property.country.toLowerCase().includes(filter.toLowerCase())
+            )
+            .map((card, i) => (
+              <PropertyCard card={card} key={i} />
+            ))}
         </div>
       </div>
-      
-    )
-}
+    </div>
+  );
+};
 
-export default Favorites
+export default Favorites;
