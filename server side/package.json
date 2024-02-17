@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
-    "postinstall": "node_modules/.bin/prisma generate"
+    "postinstall": "npm run prisma:generate",
+    "prisma:generate": "prisma generate"
   },
   "author": "",
   "license": "ISC",
