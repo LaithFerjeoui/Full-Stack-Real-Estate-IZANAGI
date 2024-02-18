@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "postinstall": "npx prisma generate"
-    
+    "postinstall": "npx prisma generate --no-optional"
+
   },
   "author": "",
   "license": "ISC",
