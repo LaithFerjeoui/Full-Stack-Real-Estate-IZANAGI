@@ -10,6 +10,7 @@ const Favorites = () => {
   const {
     userDetails: { favorites },
   } = useContext(UserDetailContext);
+  
   const { data, isError, isLoading } = useProperties();
   if (isError) {
     return (
@@ -71,9 +72,10 @@ const Favorites = () => {
 
         <div className="paddings flex justify-center items-center flex-wrap">
           
-          {data
+          {
+          data
             .filter((property) =>
-            favorites && Array.isArray(favorites) && favorites.includes(property.id)
+            favorites && Array.isArray(favorites) && favorites.includes(property._id)
             
             )
             .filter(

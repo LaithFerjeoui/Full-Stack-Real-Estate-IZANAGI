@@ -25,7 +25,7 @@ const Heart = ({id}) => {
     onSuccess: () => {
       setUserDetails((prev) => ({
         ...prev,
-        favorites: updateFavorites(id, prev.favorites),
+        favorites: updateFavorites(id, prev.favorites || []),
       }));
     },
   });

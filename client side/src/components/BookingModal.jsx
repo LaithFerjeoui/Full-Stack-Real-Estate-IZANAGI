@@ -21,7 +21,7 @@ const BookingModal = ({ opened, setOpened, email, propertyId }) => {
     setUserDetails((prev) => ({
       ...prev,
       bookings: [
-        ...prev.bookings,
+        ...(prev.bookings || []),
         {
           id: propertyId,
           date: dayjs(value).format("DD/MM/YYYY"),

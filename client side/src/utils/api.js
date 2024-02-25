@@ -29,7 +29,7 @@ export const getProperty = async (id) => {
     }
     return response.data
   } catch (error) {
-    toast.error("Something went wrong")
+    toast.error("Something went wrong.")
     throw error
   }
 }
@@ -55,6 +55,7 @@ export const createUser = async (email, token) => {
 
 export const bookVisit = async (date, propertyId, email, token) => {
   try {
+    console.log("data",date)
     await api.post(
       `/user/bookVisit/${propertyId}`,
       {
@@ -114,7 +115,7 @@ export const addToFav = async (id, email, token) => {
 
 
 export const getAllFav = async (email, token) => {
-  if (!token) return
+   if (!token) return 
   try {
 
     const res = await api.post(
@@ -128,8 +129,8 @@ export const getAllFav = async (email, token) => {
         },
       }
     );
-
-    return res.data["favResidenciesID"]
+    
+    return res.data
 
   } catch (e) {
     toast.error("Something went wrong while fetching Favorites");
@@ -153,7 +154,7 @@ export const getAllBookings = async (email, token) => {
         },
       }
     );
-    return res.data["bookedVisits"];
+    return res.data;
 
 
   } catch (error) {

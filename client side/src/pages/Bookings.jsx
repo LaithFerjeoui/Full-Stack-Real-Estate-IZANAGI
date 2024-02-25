@@ -70,7 +70,7 @@ const Bookings = () => {
         <div className="paddings flex justify-center items-center flex-wrap">
           {data
             .filter((property) =>
-            bookings && Array.isArray(bookings) && bookings.map((booking) => booking.id).includes(property.id)
+            bookings && Array.isArray(bookings) && bookings.map((booking) => booking.id).includes(property._id)
             
             )
             .filter(

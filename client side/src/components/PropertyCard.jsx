@@ -7,9 +7,9 @@ const PropertyCard = ({ card }) => {
   
   return (
     <div className="flexColStart relative z-0 gap-2.5 p-2 shadow-xl  rounded-[10px] max-w-max m-auto transition duration-200 ease-in hover:cursor-pointer hover:scale-[1.025] r-card mb-4 "
-    onClick={()=> navigate(`../properties/${card.id}`)}>
+    onClick={()=> navigate(`../properties/${card?._id}`)}>
       {" "}
-      <HeartCards id={card?.id}/>
+      <HeartCards id={card?._id}/>
       <img src={card.image} alt="" className="w-60 h-40 max-w-60 rounded-xl" />
       <span className="secondaryText text-sm font-semibold">
         <span className="text-orange-400">$</span>
